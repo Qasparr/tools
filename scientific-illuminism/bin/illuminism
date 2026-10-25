@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# =============================================================================
+# "Every tool in its home; every home on the path." — the scribe
+#
+# Thelemic date: XXV day of October, Dies Solis, Sol in Scorpio,
+# Anno V:xii e.n. (2026 e.v.)
+#
+# 93.
+#
+# bin/illuminism — the executable door, for use without installing the
+# package: it puts the package's home (this file's grandparent) on
+# sys.path and calls illuminism.cli.main, unchanged.
+#
+# By Johnathan 'Qasparr' Monroe (Greek, -ARR, All Rights Reserved,
+# Without Prejudice). Released under ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ.
+#
+# Live, Love, and let Love, Live. — 93.
+# All Rights Reserved, Without Prejudice.
+# =============================================================================
+
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from illuminism.cli import main
+
+if __name__ == "__main__":
+    sys.exit(main())
+
+# Live, Love, and let Love, Live. — 93.
+# All Rights Reserved, Without Prejudice.

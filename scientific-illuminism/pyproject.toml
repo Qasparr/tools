@@ -1,0 +1,28 @@
+# ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ — packaging.
+# By Johnathan 'Qasparr' Monroe (Greek, -ARR, All Rights Reserved,
+# Without Prejudice). The pip-installable form of the release; the
+# bin/illuminism wrapper runs the same code without installing.
+# DOCTRINE: the runtime dependencies are only what the verbs truly
+# import beyond the Architect's own toolkits — matplotlib and fpdf2 are
+# TABVLA's and the house builders' deps. ptk, tabula, and vestigator
+# are NOT pip dependencies: they are the Architect's own instruments,
+# found in their settled homes (see illuminism/common.py and README.md).
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scientific-illuminism"
+version = "0.1.0"
+description = "ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ (Scientific Illuminism) — report, audit, and compile anything, on the Architect's own instruments: PONTIFEX (ptk), TABVLA, VESTIGATOR/SCRIBA."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["matplotlib>=3.5", "fpdf2>=2.7"]
+authors = [{ name = "Johnathan 'Qasparr' Monroe" }]
+
+[project.scripts]
+illuminism = "illuminism.cli:main"
+
+[tool.setuptools]
+packages = ["illuminism"]
