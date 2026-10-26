@@ -1,6 +1,6 @@
 # Run log — illuminism compile
 
-ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ — illuminism, version 0.1.0. Run at 2026-10-25T22:28:58.
+ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ — illuminism, version 0.1.0. Run at 2026-10-26T03:10:04.
 Command: `illuminism compile /home/hatch/workspace/tools/scientific-illuminism/selftest/fixture.md`
 
 ## Phase 1 — Survey
@@ -10,6 +10,8 @@ Command: `illuminism compile /home/hatch/workspace/tools/scientific-illuminism/s
 **Observation:** H1 title: True · Flagpole: True · Table of Authorities: True · Colophon: True · Doctrine logo on file: False
 
 **Observation:** no Doctrine logo at /home/hatch/workspace/templates/doctrine-logo.png — compiling without it; the absence is noted here and in any scaffolded colophon
+
+**Observation:** text shaping inactive — uharfbuzz is not installed; compiling unshaped (typographic degradation, stated, not hidden)
 
 ## Phase 2 — Render
 

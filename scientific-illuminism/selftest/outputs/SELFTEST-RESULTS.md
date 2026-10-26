@@ -14,7 +14,7 @@ Released under ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ.
 | gate refuses both dishonest figures | PASS | 2/2 refused |
 | report exits 0 | PASS | exit 0 |
 | report Markdown written | PASS |  |
-| report PDF written (gate passed) | PASS | 68589 bytes |
+| report PDF written (gate passed) | PASS | 68583 bytes |
 | compile exits 0 | PASS | exit 0 |
 | compiled PDF has >= 2 pages | PASS | 2 pages |
 | Flagpole footer text present in the print | PASS |  |

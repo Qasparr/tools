@@ -61,7 +61,7 @@ from pathlib import Path
 
 from . import __version__
 from .common import (FLAG, PASS, civil_date, header_block, load_ptk,
-                     load_tabula)
+                     load_tabvla)
 
 
 def _num(cell):
@@ -151,7 +151,7 @@ def run(args, log):
     """illuminism report — build the report. Returns the exit code."""
     ptk_pkg = load_ptk()
     ptk_table = ptk_pkg.table
-    tabula = load_tabula()
+    tabvla = load_tabvla()
 
     data_path = Path(args.data)
     if not data_path.is_file():
@@ -223,7 +223,7 @@ def run(args, log):
     md_path.write_text("\n".join(lines), encoding="utf-8")
     log.observe("Markdown report written: %s" % md_path)
 
-    t = tabula.Tabula(str(md_path))
+    t = tabvla.Tabvla(str(md_path))
     for i, s in fig_lines:
         source = s.get("source") or (
             "illuminism report %s — data file %s, series %r (%d rows)"
@@ -238,7 +238,7 @@ def run(args, log):
                     % (i, s.get("kind", "bar"), len(s["values"]), source))
     try:
         pdf_path = t.build(str(out_dir / (stem + "-report.pdf")))
-    except tabula.ProvenanceError as exc:
+    except tabvla.ProvenanceError as exc:
         log.result("the gate refused: %s — no PDF ships (%s)"
                    % (exc, FLAG))
         print("report: GATE REFUSED — %s" % exc)

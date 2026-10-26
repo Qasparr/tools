@@ -65,7 +65,7 @@ def main():
 
     from illuminism import audit, compile as compile_mod, report
     from illuminism.common import (RunLog, load_ptk, load_scriba,
-                                   load_tabula)
+                                   load_tabvla)
 
     # ---- 0. the instruments are alive -----------------------------------
     log = RunLog("selftest", ["run_selftest.py"])
@@ -75,9 +75,9 @@ def main():
         weigh = load_ptk().weigh
         check("ptk calibration (עז=77, θελημα=93, AXONEME=77)",
               weigh.calibrate() is True)
-        tabula = load_tabula()
+        tabvla = load_tabvla()
         check("TABVLA import + gate present",
-              hasattr(tabula, "gate") and hasattr(tabula, "Tabula"))
+              hasattr(tabvla, "gate") and hasattr(tabvla, "Tabvla"))
         scriba = load_scriba()
         check("VESTIGATOR SCRIBA import", hasattr(scriba, "CaseFile"))
     except Exception as exc:  # the instruments must load; anything else is noise
@@ -108,7 +108,7 @@ def main():
     log.phase("Gate negative control", "a figure with no source, and a "
               "figure whose numbers disagree with its labels, must both "
               "be refused")
-    from tabula.figures import Figure
+    from tabvla.figures import Figure
     refused = 0
     for fig in (Figure(image_path="ghost.png", caption="a caption",
                        source=""),
@@ -116,8 +116,8 @@ def main():
                        source="a source", data={"labels": ["a", "b"],
                                                  "values": [1]})):
         try:
-            tabula.gate([fig])
-        except tabula.ProvenanceError:
+            tabvla.gate([fig])
+        except tabvla.ProvenanceError:
             refused += 1
     check("gate refuses both dishonest figures", refused == 2,
           "%d/2 refused" % refused)

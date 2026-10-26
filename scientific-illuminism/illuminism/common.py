@@ -20,7 +20,7 @@
 # can be audited the way the run audits its target.
 #
 # MECHANISM: three toolkits are found, never vendored — ptk (PONTIFEX),
-# tabula (TABVLA), vestigator (VESTIGATOR). Discovery order: environment
+# tabvla (TABVLA), vestigator (VESTIGATOR). Discovery order: environment
 # variable, then the settled workspace home. sys.path is extended at load
 # time, per verb, so a verb imports only the instruments it actually uses.
 #
@@ -78,9 +78,13 @@ LOGO_PATH = Path.home() / "workspace" / "templates" / "doctrine-logo.png"
 
 _TOOL_HOMES = {
     "ptk": ("ILLUMINISM_PTK_HOME", Path.home() / "workspace" / "pontifex" / "tools"),
-    "tabula": ("ILLUMINISM_TABULA_HOME", Path.home() / "workspace" / "tabula"),
+    "tabvla": ("ILLUMINISM_TABVLA_HOME", Path.home() / "workspace" / "tabvla"),
     "vestigator": ("ILLUMINISM_VESTIGATOR_HOME", Path.home() / "workspace" / "vestigator"),
 }
+
+# Pre-rename environment variables, still honored as fallbacks so a shell
+# configured before the TABVLA rename of 2026-10-25 keeps working.
+_LEGACY_ENV = {"tabvla": "ILLUMINISM_TABULA_HOME"}
 
 
 def tool_home(name):
@@ -89,7 +93,10 @@ def tool_home(name):
     DOCTRINE: fail loudly, never guess. If the home is missing, the error
     names the environment variable that would have overridden it."""
     env_var, default = _TOOL_HOMES[name]
-    home = Path(os.environ.get(env_var, str(default))).expanduser()
+    raw = os.environ.get(env_var)
+    if raw is None and name in _LEGACY_ENV:
+        raw = os.environ.get(_LEGACY_ENV[name])
+    home = Path(raw if raw is not None else str(default)).expanduser()
     if not home.is_dir():
         raise FileNotFoundError(
             "%s toolkit not found at %s — set %s to its home" % (name, home, env_var))
@@ -110,9 +117,14 @@ def load_ptk():
     return _load("ptk")
 
 
+def load_tabvla():
+    """TABVLA (Tabvla, gate, ProvenanceError, load_report)."""
+    return _load("tabvla")
+
+
 def load_tabula():
-    """TABVLA (Tabula, gate, ProvenanceError, load_report)."""
-    return _load("tabula")
+    """Deprecated alias of load_tabvla (pre-rename name, 2026-10-25)."""
+    return load_tabvla()
 
 
 def load_scriba():

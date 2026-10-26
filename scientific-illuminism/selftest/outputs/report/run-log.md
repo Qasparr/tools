@@ -1,6 +1,6 @@
 # Run log — illuminism report
 
-ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ — illuminism, version 0.1.0. Run at 2026-10-25T22:28:57.
+ΕΠΙΣΤΗΜΟΝΙΚΟΣ ΙΛΛΟΥΜΙΝΙΣΜΟΣ — illuminism, version 0.1.0. Run at 2026-10-26T03:10:04.
 Command: `illuminism report /home/hatch/workspace/tools/scientific-illuminism/selftest/data.csv`
 
 ## Phase 1 — Ingest

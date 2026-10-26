@@ -4,7 +4,7 @@
 # bin/illuminism wrapper runs the same code without installing.
 # DOCTRINE: the runtime dependencies are only what the verbs truly
 # import beyond the Architect's own toolkits — matplotlib and fpdf2 are
-# TABVLA's and the house builders' deps. ptk, tabula, and vestigator
+# TABVLA's and the house builders' deps. ptk, tabvla, and vestigator
 # are NOT pip dependencies: they are the Architect's own instruments,
 # found in their settled homes (see illuminism/common.py and README.md).
 

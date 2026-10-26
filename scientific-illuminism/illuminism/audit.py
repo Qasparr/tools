@@ -25,8 +25,8 @@
 #   1. PONTIFEX (ptk.weigh): every declared weighing is recomputed in
 #      its named bank. Declarations enter by the CONTRACT below — this
 #      instrument does not pretend to parse arbitrary prose.
-#   2. TABVLA (tabula.gate): the target's figures, declared in a figures
-#      manifest, are built through the Tabula API and passed through the
+#   2. TABVLA (tabvla.gate): the target's figures, declared in a figures
+#      manifest, are built through the Tabvla API and passed through the
 #      provenance gate — fail-closed, as the gate is.
 #   3. The format lint: lexical checks against the Teacher's Edition
 #      header directive (templates/teachers-edition-header.md).
@@ -64,7 +64,7 @@ from pathlib import Path
 
 from . import __version__
 from .common import (FLAG, OPEN, PASS, RunLog, civil_date, header_block,
-                     load_ptk, load_scriba, load_tabula)
+                     load_ptk, load_scriba, load_tabvla)
 
 # MECHANISM: one declaration per line, banked at the end of the line.
 # The bank vocabulary is closed — an unregistered bank is an OPEN, never
@@ -192,16 +192,16 @@ def load_terms_manifest(path):
 # ---------------------------------------------------------------------------
 
 def gate_figures(manifest_path, target_text, out_dir, log):
-    """Build the manifest's figures through Tabula and run the gate.
+    """Build the manifest's figures through Tabvla and run the gate.
 
     Returns a list of (figure-label, verdict, reason) findings.
-    MECHANISM: charts are drawn by Tabula.chart into the audit's output
+    MECHANISM: charts are drawn by Tabvla.chart into the audit's output
     directory (the drawing is part of the evidence); images register via
-    Tabula.figure. The gate itself is tabula.gate — fail-closed: it
+    Tabvla.figure. The gate itself is tabvla.gate — fail-closed: it
     raises on the first figure that cannot point to its numbers, so
     figures after the failure are honestly OPEN (not reached), never
     silently passed."""
-    tabula = load_tabula()
+    tabvla = load_tabvla()
     if manifest_path is None:
         if "![fig:" in target_text:
             return [("figure references", OPEN,
@@ -217,7 +217,7 @@ def gate_figures(manifest_path, target_text, out_dir, log):
     entries = data.get("figures", [])
     scratch = out_dir / "gate-report.md"
     scratch.write_text("# Figure gate\n\n## I. Figures\n", encoding="utf-8")
-    t = tabula.Tabula(str(scratch))
+    t = tabvla.Tabvla(str(scratch))
     labels = []
     for i, entry in enumerate(entries, start=1):
         kind = entry.get("type", "chart")
@@ -245,8 +245,8 @@ def gate_figures(manifest_path, target_text, out_dir, log):
     findings = []
     failed_at = None
     try:
-        tabula.gate(real)
-    except tabula.ProvenanceError as exc:
+        tabvla.gate(real)
+    except tabvla.ProvenanceError as exc:
         msg = str(exc)
         m = re.match(r"figure (\d+)", msg)
         failed_at = int(m.group(1)) if m else 1

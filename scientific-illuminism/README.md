@@ -29,7 +29,7 @@ Architect already authored, each in its settled home:
 | Instrument | Home | What it does here |
 |---|---|---|
 | **PONTIFEX toolkit (ptk 0.1.0)** | `~/workspace/pontifex/tools/` | weighs every declared term in its own tongue's bank (Hebrew, Hebrew gadol, Greek, Latin ordinal, Agrippa, Arabic abjad) and renders the ledgers as tables |
-| **TABVLA 0.1.0** | `~/workspace/tabula/` | draws every figure and stands its provenance gate over them — fail-closed: a figure that cannot point to its numbers does not ship |
+| **TABVLA 0.1.0** | `~/workspace/tabvla/` | draws every figure and stands its provenance gate over them — fail-closed: a figure that cannot point to its numbers does not ship |
 | **VESTIGATOR / SCRIBA 0.1.0** | `~/workspace/vestigator/` | keeps the audit's case file (SQLite): every finding filed as an event, confidence mandatory |
 | **INDAGATOR** | (same repo) | the hunt engine — *not* used here, stated plainly: an audit consumes found material, it does not hunt. Forcing it in would be decoration, not engineering. |
 
